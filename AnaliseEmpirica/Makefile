@@ -1,6 +1,16 @@
-all:
-	gcc -Wall -g -o main *.c
+FLAGS = -Wall -Wno-unused-result
+
+DEPS = vector.h
+OBJ = vector.c buscaBinaria.c
+
+%.o: %.c $(DEPS)
+	gcc -g -c -o $@ $< $(FLAGS)
+
+all: $(OBJ)
+	gcc -g -o buscaBinaria $(OBJ) $(FLAGS)
+
 clean:
-	rm -f main
+	rm -f buscaBinaria *.o
+
 run: 
-	./main
+	./busca > dadosBuscaBinaria.txt

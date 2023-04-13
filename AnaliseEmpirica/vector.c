@@ -156,18 +156,22 @@ void vector_sort(Vector *v){
 
 // Retorna o indice de val usando busca binaria. Retorna -1 se nao encontrado.
 int vector_binary_search(Vector *v, data_type val){
-    int begin = 0;
-    int end = v->size - 1;
+    int low = 0;
+    int high = v->size - 1;
+    
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
 
-    while (begin <= end) {
-        int middle = (begin + end) / 2;
+        if (v->data[mid] == val){
+            return mid;
+        }
 
-        if (v->data[middle] == val) {
-            return middle;
-        } else if (v->data[middle] < val) {
-            begin = middle + 1;
-        } else {
-            end = middle  - 1;
+        if (v->data[mid] < val){
+            low = mid + 1;
+        }
+
+        else{
+            high = mid - 1;
         }
     }
 
