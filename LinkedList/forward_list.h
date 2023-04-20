@@ -2,10 +2,7 @@
 #define _FORWARD_forward_list_H_
 #include "node.h"
 
-typedef struct forwardList{
-    int size;
-    Node *head;
-} ForwardList;
+typedef struct ForwardList ForwardList;
 
 //This function creates a linked list and allocates memory to it
 ForwardList* forward_list_construct();

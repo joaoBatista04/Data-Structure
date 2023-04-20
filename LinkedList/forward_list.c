@@ -3,6 +3,11 @@
 #include "node.h"
 #include "forward_list.h"
 
+struct ForwardList{
+    int size;
+    Node *head;
+};
+
 /**
  * @brief This function creates a linked list and allocates memory to it
  * 
