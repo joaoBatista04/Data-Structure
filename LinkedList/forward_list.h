@@ -21,5 +21,7 @@ data_type forward_list_get(ForwardList* l, int i);
 data_type forward_list_pop_front(ForwardList* l);
 // retorna uma lista contendo o reverso de outra
 ForwardList* forward_list_reverse(ForwardList* l);
+ForwardList* forward_list_reverse_inplace(ForwardList* l);
+void forward_list_destroy(ForwardList *l);
 
 #endif

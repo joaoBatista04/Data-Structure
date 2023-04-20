@@ -28,16 +28,11 @@ int main(){
         scanf("%d", &val);
         forward_list_push_front(l, val);
     }
-
-    scanf("%d", &n);
-
-    for (int i = 0; i < n; i++)
-        printf("%d\n", forward_list_pop_front(l));
-
-    // test the destroy function
-    forward_list_destroy(l);
-
-    return 0;
+    printf("Original list");
+    forward_list_print(l, print_data_type);
+    printf("\nReversed list");
+    forward_list_reverse_inplace(l);
+    forward_list_print(l, print_data_type);
 
     return 0;
 }

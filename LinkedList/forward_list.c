@@ -84,6 +84,23 @@ ForwardList* forward_list_reverse(ForwardList* l){
     return fw;
 }
 
+ForwardList* forward_list_reverse_inplace(ForwardList* l){
+    Node *current = l->head;
+    Node *next = NULL;
+    Node *previous = NULL;
+
+    while(current != NULL){
+        next = current->next;
+        current->next = previous;
+        previous = current;
+        current = next;
+    }
+
+    l->head = previous;
+
+    return l;
+}
+
 void forward_list_destroy(ForwardList *l){
 
 }
