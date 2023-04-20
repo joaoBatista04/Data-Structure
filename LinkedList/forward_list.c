@@ -104,6 +104,8 @@ data_type forward_list_pop_front(ForwardList* l){
     value = aux->value;
     node_destroy(aux);
 
+    l->size--;
+
     return value;
 }
 /**
