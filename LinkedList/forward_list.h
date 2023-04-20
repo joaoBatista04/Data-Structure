@@ -13,7 +13,7 @@ ForwardList* forward_list_construct();
 int forward_list_size(ForwardList* l);
 //This function adds an item to the beginning of the list
 void forward_list_push_front(ForwardList* l, data_type val);
-//This function prints the linked list values on the screen
+//This function prints the linked list values on the screen. This function needs a function pointer that tells how to print the data_type
 void forward_list_print(ForwardList* l, void (*print_fn)(data_type));
 //This function returns the i-th element of the linked list
 data_type forward_list_get(ForwardList* l, int i);

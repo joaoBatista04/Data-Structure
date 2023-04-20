@@ -31,7 +31,7 @@ int main(){
     printf("Original list");
     forward_list_print(l, print_data_type);
     printf("\nReversed list");
-    forward_list_reverse_inplace(l);
+    l = forward_list_reverse(l);
     forward_list_print(l, print_data_type);
 
     forward_list_destroy(l);

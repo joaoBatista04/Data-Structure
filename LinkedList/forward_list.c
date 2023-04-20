@@ -40,7 +40,7 @@ void forward_list_push_front(ForwardList* l, data_type val){
 }
 
 /**
- * @brief This function prints the linked list values on the screen
+ * @brief This function prints the linked list values on the screen. This function needs a function pointer that tells how to print the data_type
  * 
  * @param l 
  * @param print_fn 
@@ -115,6 +115,8 @@ ForwardList* forward_list_reverse(ForwardList* l){
         forward_list_push_front(fw, aux->value);
         aux = aux->next;
     }
+    
+    forward_list_destroy(l);
 
     return fw;
 }
