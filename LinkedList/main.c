@@ -34,5 +34,7 @@ int main(){
     forward_list_reverse_inplace(l);
     forward_list_print(l, print_data_type);
 
+    forward_list_destroy(l);
+
     return 0;
 }

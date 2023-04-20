@@ -7,21 +7,23 @@ typedef struct forwardList{
     Node *head;
 } ForwardList;
 
-// cria uma lista
+//This function creates a linked list and allocates memory to it
 ForwardList* forward_list_construct();
-// retorna o número de elementos na lista
+//This function returns the linked list size
 int forward_list_size(ForwardList* l);
-// adiciona um item no início da lista
+//This function adds an item to the beginning of the list
 void forward_list_push_front(ForwardList* l, data_type val);
-// mostra a lista na tela
+//This function prints the linked list values on the screen
 void forward_list_print(ForwardList* l, void (*print_fn)(data_type));
-// retorna o i-ésimo elemento da lista
+//This function returns the i-th element of the linked list
 data_type forward_list_get(ForwardList* l, int i);
-// remove o primeiro elemento
+//This function removes the first element from the linked list
 data_type forward_list_pop_front(ForwardList* l);
-// retorna uma lista contendo o reverso de outra
+//This function returns a linked list containing the reverse of another
 ForwardList* forward_list_reverse(ForwardList* l);
+//This function returns the same reversed linked list, without creating a new one
 ForwardList* forward_list_reverse_inplace(ForwardList* l);
+//This function frees the memory allocated to the list and its nodes
 void forward_list_destroy(ForwardList *l);
 
 #endif
