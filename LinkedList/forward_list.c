@@ -168,3 +168,12 @@ void forward_list_destroy(ForwardList *l){
 
     free(l);
 }
+
+void forward_list_cat(ForwardList *list, ForwardList *listTwo){
+    Node *next = listTwo->head;
+
+    while(next != NULL){
+        forward_list_push_front(list, next->value);
+        next = next->next;
+    }
+}

@@ -22,5 +22,6 @@ ForwardList* forward_list_reverse(ForwardList* l);
 ForwardList* forward_list_reverse_inplace(ForwardList* l);
 //This function frees the memory allocated to the list and its nodes
 void forward_list_destroy(ForwardList *l);
+void forward_list_cat(ForwardList *list, ForwardList *listTwo);
 
 #endif
