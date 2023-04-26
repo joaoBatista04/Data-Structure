@@ -22,7 +22,9 @@ ForwardList* forward_list_reverse(ForwardList* l);
 ForwardList* forward_list_reverse_inplace(ForwardList* l);
 //This function frees the memory allocated to the list and its nodes
 void forward_list_destroy(ForwardList *l);
-//This function concatenates two linked list, adding the second one values at the beginning of the first one.
+//This function concatenates two linked list, adding the second one values at the beginning of the first one
 void forward_list_cat(ForwardList *list, ForwardList *listTwo);
+//This function adds an item to the end of the list
+void forward_list_push_back(ForwardList *l, data_type value);
 
 #endif

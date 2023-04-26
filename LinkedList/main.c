@@ -30,6 +30,9 @@ int main(){
 
     forward_list_print(l, print_data_type);
 
+    forward_list_push_back(l, 57);
+    forward_list_print(l, print_data_type);
+
     forward_list_destroy(l);
     forward_list_destroy(l2);
 

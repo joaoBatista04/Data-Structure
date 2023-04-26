@@ -6,6 +6,7 @@
 struct ForwardList{
     int size;
     Node *head;
+    Node *last;
 };
 
 /**
@@ -18,6 +19,7 @@ ForwardList* forward_list_construct(){
 
     fw->size = 0;
     fw->head = NULL;
+    fw->last = NULL;
 
     return fw;
 }
@@ -42,6 +44,10 @@ void forward_list_push_front(ForwardList* l, data_type val){
     Node *n = node_construct(val, l->head);
     l->head = n;
     l->size++;
+
+    if(l->size == 1){
+        l->last = l->head;
+    }
 }
 
 /**
@@ -96,8 +102,13 @@ data_type forward_list_get(ForwardList* l, int i){
  * @return data_type 
  */
 data_type forward_list_pop_front(ForwardList* l){
+    if(l->head == NULL){
+        exit(printf("Error: list is empty"));
+    }
+
     Node *aux = l->head;
     data_type value;
+
 
     l->head = aux->next;
 
@@ -105,6 +116,10 @@ data_type forward_list_pop_front(ForwardList* l){
     node_destroy(aux);
 
     l->size--;
+
+    if(l->size <= 1){
+        l->last = l->head;
+    }
 
     return value;
 }
@@ -170,7 +185,7 @@ void forward_list_destroy(ForwardList *l){
 }
 
 /**
- * @brief This function concatenates two linked list, adding the second one values at the beginning of the first one.
+ * @brief This function concatenates two linked list, adding the second one values at the beginning of the first one
  * 
  * @param list 
  * @param listTwo 
@@ -182,4 +197,24 @@ void forward_list_cat(ForwardList *list, ForwardList *listTwo){
         forward_list_push_front(list, next->value);
         next = next->next;
     }
+}
+
+/**
+ * @brief This function adds an item to the end of the list
+ * 
+ * @param l 
+ * @param value 
+ */
+void forward_list_push_back(ForwardList *l, data_type value){
+    Node *new_node = node_construct(value, NULL);
+
+    if(l->last == NULL){
+        l->head = l->last = new_node;
+    }
+
+    else{
+        l->last = l->last->next = new_node;
+    }
+
+    l->size++;
 }
