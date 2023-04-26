@@ -169,6 +169,12 @@ void forward_list_destroy(ForwardList *l){
     free(l);
 }
 
+/**
+ * @brief This function concatenates two linked list, adding the second one values at the beginning of the first one.
+ * 
+ * @param list 
+ * @param listTwo 
+ */
 void forward_list_cat(ForwardList *list, ForwardList *listTwo){
     Node *next = listTwo->head;
 
