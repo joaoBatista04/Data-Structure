@@ -44,11 +44,4 @@ int list_size(List* l){
  */
 void list_push_front(List* l, data_type val){
     Node *n = node_construct(val, l->head);
-    
-    l->head = n;
-    l->size++;
-
-    if(l->size == 1){
-        l->last = l->head;
-    }
 }
