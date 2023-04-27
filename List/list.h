@@ -1,7 +1,7 @@
 #ifndef List_H_
 #define List_H_
-#include "node.h"
 
+typedef int data_type;
 typedef struct List List;
 
 //This function creates a linked list and allocates memory to it
