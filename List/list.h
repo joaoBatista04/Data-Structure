@@ -4,13 +4,13 @@
 typedef int data_type;
 typedef struct List List;
 
-//This function creates a linked list and allocates memory to it
+//This function creates a doubly linked list and allocates memory to it
 List* list_construct();
-//This function returns the linked list size
+//This function returns the doubly linked list size
 int list_size(List* l);
-//This function adds an item to the beginning of the list
+//This function adds an item to the beginning of the doubly linked list
 void list_push_front(List* l, data_type val);
-//This function prints the linked list values on the screen. This function needs a function pointer that tells how to print the data_type
+//This function prints the doubly linked list values on the screen. This function needs a function pointer that tells how to print the data_type
 void list_print(List* l, void (*print_fn)(data_type));
 //This function returns the i-th element of the linked list
 data_type list_get(List* l, int i);
