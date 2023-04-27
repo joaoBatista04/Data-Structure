@@ -1,7 +1,7 @@
 #ifndef _FORWARD_forward_list_H_
 #define _FORWARD_forward_list_H_
-#include "node.h"
 
+typedef int data_type;
 typedef struct ForwardList ForwardList;
 
 //This function creates a linked list and allocates memory to it

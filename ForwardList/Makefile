@@ -1,7 +1,7 @@
 FLAGS = -Wall -Wno-unused-result
 
-DEPS = node.h forward_list.h
-OBJ = node.c forward_list.c main.c
+DEPS = forward_list.h
+OBJ = forward_list.c main.c
 
 %.o: %.c $(DEPS)
 	gcc -g -c -o $@ $< $(FLAGS)
