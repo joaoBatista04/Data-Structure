@@ -17,5 +17,5 @@ run:
 
 git:
 	@ git add .
-	@ git commit -m "$(r)"
+	@ git commit -m "$(commit)"
 	
