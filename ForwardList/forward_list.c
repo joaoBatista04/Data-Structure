@@ -35,7 +35,7 @@ int forward_list_size(ForwardList* l){
 }
 
 /**
- * @brief This function adds an item to the beginning of the list
+ * @brief This function adds an item to the beginning of the linked list
  * 
  * @param l 
  * @param val 
