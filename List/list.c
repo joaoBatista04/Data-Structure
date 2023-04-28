@@ -105,3 +105,66 @@ void list_print(List* l, void (*print_fn)(data_type)){
     }
     printf("]");
 }
+
+/**
+ * @brief This function returns the i-th element of the doubly linked list
+ * 
+ * @param l 
+ * @param i 
+ * @return data_type 
+ */
+data_type list_get(List* l, int i){
+    if(i < 0 || i > l->size){
+        printf("Error: invalid index.\n");
+        exit(1);
+    }
+
+    else{
+        Node *aux = l->head;
+
+        for(int idx = 0; idx < i; idx++){
+            aux = aux->next;
+        }
+
+        return aux->value;
+    }
+}
+
+/**
+ * @brief This function removes the first element from the doubly linked list
+ * 
+ * @param l 
+ * @return data_type 
+ */
+data_type list_pop_front(List* l){
+    data_type value = l->head->value;
+    Node *aux = l->head;
+
+    aux->next->previous = NULL;
+
+
+    l->head = aux->next;
+
+    node_destroy(aux);
+    l->size--;
+
+    return value;
+}
+
+/**
+ * @brief This function frees the memory allocated to the doubly linked list and its nodes
+ * 
+ * @param l 
+ */
+void list_destroy(List *l){
+    Node *current = l->head;
+    Node *next;
+
+    while(current != NULL){
+        next = current->next;
+        node_destroy(current);
+        current = next;
+    }
+
+    free(l);
+}

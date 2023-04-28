@@ -13,5 +13,7 @@ int main(){
     list_push_front(list, 10);
     list_push_front(list, 11);
 
+
     list_print(list, print_data_type);
+    list_destroy(list);
 }

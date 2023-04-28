@@ -12,9 +12,9 @@ int list_size(List* l);
 void list_push_front(List* l, data_type val);
 //This function prints the doubly linked list values on the screen. This function needs a function pointer that tells how to print the data_type
 void list_print(List* l, void (*print_fn)(data_type));
-//This function returns the i-th element of the linked list
+//This function returns the i-th element of the doubly linked list
 data_type list_get(List* l, int i);
-//This function removes the first element from the linked list
+//This function removes the first element from the doubly linked list
 data_type list_pop_front(List* l);
 //This function returns a linked list containing the reverse of another
 List* list_reverse(List* l);
