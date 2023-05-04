@@ -1,19 +1,36 @@
+
 #include <stdio.h>
-#include <stdlib.h>
+
 #include "list.h"
 
-void print_data_type(int value){
-    printf("%d", value);
+void print_int(data_type data){
+    printf("%d", data);
 }
 
-int main(){
-    List *list = list_construct();
+int main()
+{
+    int n, val;
 
-    list_push_front(list, 6);
-    list_push_front(list, 10);
-    list_push_front(list, 11);
+    List *l = list_construct();
 
+    scanf("%d", &n);
 
-    list_print(list, print_data_type);
-    list_destroy(list);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &val);
+        list_push_front(l, val);
+    }
+
+    list_push_back(l, 6);
+    list_push_back(l, 5);
+    list_print(l, print_int);
+
+    printf("\n\n");
+
+    list_pop_back(l);
+    list_print(l, print_int);
+    
+    list_destroy(l);
+
+    return 0;
 }

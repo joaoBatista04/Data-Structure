@@ -1,83 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "node.h"
 #include "list.h"
 
-typedef struct Node{
-    data_type value;
-    struct Node *next;
-    struct Node *previous;
-} Node;
-
 /**
- * @brief Memory allocation for a node pointer and assigning a value and another pointer adress to this node
- * 
- * @param value 
- * @param next 
- * @return Node* 
+ * @brief Construct a new double linked list object
+ *  Allocates memory for a new double linked list and returns a pointer to it.
+ * @return List*
+ * Pointer to the newly allocated double linked list.
+ * @note
+ * The caller is responsible for freeing the memory allocated for the double linked list using list_destroy().
+ *
  */
-Node *node_construct(data_type value, Node *next, Node *previous){
-    Node *node = (Node *)malloc(sizeof(Node));
-    
-    node->value = value;
-    node->next = next;
-    node->previous = previous;
+List *list_construct(){
+    List *list = (List *)malloc(sizeof(List));
 
-    return node;
+    list->size = 0;
+    list->head = NULL;
+    list->last = NULL;
+
+    return list;
 }
 
 /**
- * @brief Freeing memory from a node pointer
- * 
- * @param n 
+ * @brief Returns the size of the double linked list.
+ *  Returns the number of nodes in the double linked list.
+ * @param l
+ * Pointer to the double linked list.
+ * @return int
+ * Number of nodes in the double linked list.
+ *
  */
-void node_destroy(Node *n){
-    free(n);
-}
-
-struct List{
-    int size;
-    Node *head;
-    Node *last;
-};
-
-/**
- * @brief This function creates a doubly linked list and allocates memory to it
- * 
- * @return List* 
- */
-List* list_construct(){
-    List *fw = malloc(sizeof(List));
-
-    fw->size = 0;
-    fw->head = NULL;
-
-    return fw;
-}
-
-/**
- * @brief This function returns the doubly linked list size
- * 
- * @param l 
- * @return int 
- */
-int list_size(List* l){
+int list_size(List *l){
     return l->size;
 }
 
 /**
- * @brief This function adds an item to the beginning of the doubly linked list
- * 
- * @param l 
- * @param val 
+ * @brief Pushes a new node to the front of the double linked list.
+ *  Allocates memory for a new node and inserts it at the front of the double linked list.
+ * @param l
+ * Pointer to the double linked list.
+ * @param data
+ * Pointer to the data to be stored in the new node.
+ *
  */
-void list_push_front(List* l, data_type val){
-    Node *n = node_construct(val, l->head, NULL);
+void list_push_front(List *l, data_type data){
+    Node *next = l->head;
+    Node *prev = NULL;
 
-    if(l->size >= 1){
-        l->head->previous = n;
+    Node *aux = node_construct(data, prev, next);
+    
+    if(l->size > 0){
+        l->head->prev = aux;
     }
 
-    l->head = n;
+    l->head = aux;
     l->size++;
 
     if(l->size == 1){
@@ -86,12 +63,104 @@ void list_push_front(List* l, data_type val){
 }
 
 /**
- * @brief This function prints the doubly linked list values on the screen. This function needs a function pointer that tells how to print the data_type
- * 
- * @param l 
- * @param print_fn 
+ * @brief Pushes a new node to the back of the double linked list.
+ *
+ * @param l
+ * Pointer to the double linked list.
+ * @param data
+ * data to be stored in the new node.
  */
-void list_print(List* l, void (*print_fn)(data_type)){
+void list_push_back(List *l, data_type data){
+    Node *new_node = node_construct(data, l->last, NULL);
+
+    if(l->last != NULL){
+        l->last->next = new_node;
+    }
+
+    else{
+        l->head = new_node;
+    }
+
+    l->last = new_node;
+
+    l->size++;
+}
+
+/**
+ * @brief Remove the first node of the double linked list and returns its data.
+ * @param l
+ * Pointer to the double linked list.
+ * @return data_type
+ * Pointer to the data stored in the first node of the double linked list that was removed.
+ *
+ */
+data_type list_pop_front(List *l){   
+    if(l->head == NULL){
+        exit(printf("Error: list is empty"));
+    }
+
+    data_type valueReturned = l->head->value;
+
+    Node *aux = l->head;
+
+    l->head = aux->next;
+    
+    if(l->size > 1){
+        l->head->prev = NULL;
+    }
+
+    node_destroy(aux);
+
+    l->size--;
+
+     if(l->size < 1){
+        l->last = l->head;
+    }
+
+    return valueReturned;
+}
+
+/**
+ * @brief Remove the last node of the double linked list and returns its data.
+ * @param l
+ * Pointer to the double linked list.
+ * @return data_type
+ * Data stored in the last node of the double linked list that was removed.
+ */
+data_type list_pop_back(List *l){
+    if(l->size == 0){
+        exit(1);
+    }
+
+    Node *node_to_remove = l->last;
+    data_type dataReturn = node_to_remove->value;
+
+    l->last = l->last->prev;
+
+    if(l->last != NULL){
+        l->last->next = NULL;
+    }
+
+    else{
+        l->head = NULL;
+    }
+
+    node_destroy(node_to_remove);
+    l->size--;
+
+    return dataReturn;
+}
+
+/**
+ * @brief Print the elements of the double linked list.
+ *  Print the elements of the double linked list.
+ * @param l
+ * Pointer to the double linked list.
+ * @param print_fn
+ * Pointer to the function to print data_type values.
+ *
+ */
+void list_print(List *l, void (*print_fn)(data_type)){
     Node *aux = l->head;
 
     printf("[");
@@ -107,54 +176,35 @@ void list_print(List* l, void (*print_fn)(data_type)){
 }
 
 /**
- * @brief This function returns the i-th element of the doubly linked list
- * 
- * @param l 
- * @param i 
- * @return data_type 
+ * @brief Print the elements of the double linked list in reverse form.
+ *  Print the elements of the double linked list in reverse form.
+ * @param l
+ * Pointer to the double linked list.
+ * @param print_fn
+ * Pointer to the function to print data_type values.
+ *
  */
-data_type list_get(List* l, int i){
-    if(i < 0 || i > l->size){
-        printf("Error: invalid index.\n");
-        exit(1);
-    }
+void list_print_reverse(List *l, void (*print_fn)(data_type)){
+    Node *aux = l->last;
 
-    else{
-        Node *aux = l->head;
-
-        for(int idx = 0; idx < i; idx++){
-            aux = aux->next;
+    printf("[");
+    while(aux != NULL){
+        print_fn(aux->value);
+        
+        if(aux->prev != NULL){
+            printf(", ");
         }
-
-        return aux->value;
+        aux = aux->prev;
     }
+    printf("]");
 }
 
 /**
- * @brief This function removes the first element from the doubly linked list
- * 
- * @param l 
- * @return data_type 
- */
-data_type list_pop_front(List* l){
-    data_type value = l->head->value;
-    Node *aux = l->head;
-
-    aux->next->previous = NULL;
-
-
-    l->head = aux->next;
-
-    node_destroy(aux);
-    l->size--;
-
-    return value;
-}
-
-/**
- * @brief This function frees the memory allocated to the doubly linked list and its nodes
- * 
- * @param l 
+ * @brief Destroys the double linked list.
+ *  Frees the memory allocated for the double linked list and all its nodes.
+ * @param l
+ * Pointer to the double linked list.
+ *
  */
 void list_destroy(List *l){
     Node *current = l->head;
