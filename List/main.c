@@ -1,11 +1,7 @@
 
 #include <stdio.h>
-
 #include "list.h"
-
-void print_int(data_type data){
-    printf("%d", data);
-}
+#include "iterator.h"
 
 int main()
 {
@@ -13,23 +9,38 @@ int main()
 
     List *l = list_construct();
 
+    // fill the list by adding values to the end
     scanf("%d", &n);
 
     for (int i = 0; i < n; i++)
     {
         scanf("%d", &val);
-        list_push_front(l, val);
+        list_push_back(l, val);
     }
 
-    list_push_back(l, 6);
-    list_push_back(l, 5);
-    list_print(l, print_int);
+    // uses the back iterator to double the values
+    ListIterator *it = list_back_iterator(l);
 
-    printf("\n\n");
+    while (!list_iterator_is_over(it))
+    {
+        data_type *data = list_iterator_previous(it);
+        (*data) *= 2;
+    }
 
-    list_pop_back(l);
-    list_print(l, print_int);
-    
+    list_iterator_destroy(it);
+
+    // use the front iterator to print the values
+    it = list_front_iterator(l);
+
+    while (!list_iterator_is_over(it))
+    {
+        data_type *data = list_iterator_next(it);
+        printf("%d\n", *data);
+    }
+
+    list_iterator_destroy(it);
+
+    // test the destroy function
     list_destroy(l);
 
     return 0;

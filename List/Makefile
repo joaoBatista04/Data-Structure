@@ -1,7 +1,7 @@
 FLAGS = -Wall -Wno-unused-result
 
-DEPS = node.h list.h
-OBJ = node.c list.c main.c
+DEPS = node.h list.h interator.h
+OBJ = node.c list.c iterator.c main.c
 
 %.o: %.c $(DEPS)
 	gcc -g -c -o $@ $< $(FLAGS)

@@ -3,6 +3,12 @@
 #include "node.h"
 #include "list.h"
 
+typedef struct List{
+    Node *head;
+    Node *last;
+    int size;
+} List;
+
 /**
  * @brief Construct a new double linked list object
  *  Allocates memory for a new double linked list and returns a pointer to it.
@@ -33,6 +39,32 @@ List *list_construct(){
  */
 int list_size(List *l){
     return l->size;
+}
+
+/**
+ * @brief Returns the head of the double linked list.
+ *  Returns the node pointer of the doubly linked list head.
+ * @param l
+ * Pointer to the double linked list.
+ * @return void*
+ * Node pointer of the doubly linked list head.
+ *
+ */
+void *list_return_head(List *l){
+    return l->head;
+}
+
+/**
+ * @brief Returns the last node of the double linked list.
+ *  Returns the node pointer of the doubly linked list last node.
+ * @param l
+ * Pointer to the double linked list.
+ * @return void*
+ * Node pointer of the doubly linked list last node.
+ *
+ */
+void *list_return_last(List *l){
+    return l->last;
 }
 
 /**
@@ -161,7 +193,7 @@ data_type list_pop_back(List *l){
  *
  */
 void list_print(List *l, void (*print_fn)(data_type)){
-    Node *aux = l->head;
+    Node *aux = l->last;
 
     printf("[");
     while(aux != NULL){
@@ -170,7 +202,7 @@ void list_print(List *l, void (*print_fn)(data_type)){
         if(aux->next != NULL){
             printf(", ");
         }
-        aux = aux->next;
+        aux = aux->prev;
     }
     printf("]");
 }

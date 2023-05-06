@@ -1,14 +1,8 @@
 #ifndef _DOUBLE_LINKED_LIST_H_
 #define _DOUBLE_LINKED_LIST_H_
 
-#include "node.h"
-
-typedef struct
-{
-    Node *head;
-    Node *last;
-    int size;
-} List;
+typedef struct List List;
+typedef int data_type;
 
 /**
  * @brief Construct a new double linked list object
@@ -20,6 +14,28 @@ typedef struct
  *
  */
 List *list_construct();
+
+/**
+ * @brief Returns the head of the double linked list.
+ *  Returns the node pointer of the doubly linked list head.
+ * @param l
+ * Pointer to the double linked list.
+ * @return Node*
+ * Pointer of the doubly linked list head.
+ *
+ */
+void *list_return_head(List *l);
+
+/**
+ * @brief Returns the last node of the double linked list.
+ *  Returns the node pointer of the doubly linked list last node.
+ * @param l
+ * Pointer to the double linked list.
+ * @return Node*
+ * Pointer of the doubly linked list last node.
+ *
+ */
+void *list_return_last(List *l);
 
 /**
  * @brief Returns the size of the double linked list.
