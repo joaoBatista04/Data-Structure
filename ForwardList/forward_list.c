@@ -15,7 +15,7 @@ struct ForwardList{
  * @return ForwardList* 
  */
 ForwardList* forward_list_construct(){
-    ForwardList *fw = malloc(sizeof(ForwardList));
+    ForwardList *fw = (ForwardList *)malloc(sizeof(ForwardList));
 
     fw->size = 0;
     fw->head = NULL;
