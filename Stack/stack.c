@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "stack.h"
-#include "forward_list.h"
+#include "vector.h"
 
 typedef struct Stack{
-    ForwardList *forwardList;
+    Vector *vector;
     int size;
 } Stack;
 
@@ -17,7 +17,7 @@ Stack *stack_construct(){
     Stack *stack = (Stack *)malloc(sizeof(Stack));
 
     stack->size = 0;
-    stack->forwardList = forward_list_construct();
+    stack->vector = vector_construct();
 
     return stack;
 }
@@ -29,7 +29,7 @@ Stack *stack_construct(){
  * @param val 
  */
 void stack_push(Stack *s, data_type val){
-    forward_list_push_front(s->forwardList, val);
+    vector_push_back(s->vector, val);
     s->size++;
 }
 
@@ -41,7 +41,7 @@ void stack_push(Stack *s, data_type val){
  */
 data_type stack_pop(Stack *s){
     data_type val;
-    val = forward_list_pop_front(s->forwardList);
+    val = vector_pop_back(s->vector);
     s->size--;
 
     return val;
@@ -69,7 +69,7 @@ int stack_empty(Stack *s){
  * @param stack
  */
 void stack_destroy(Stack *s){
-    forward_list_destroy(s->forwardList);
+    vector_destroy(s->vector);
 
     free(s);
 }
