@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "list.h"
+#include "forward_list.h"
 #include "queue.h"
 
 typedef struct Queue{
-    List *list;
+    ForwardList *forward_list;
     int size;
 } Queue;
 
@@ -16,7 +16,7 @@ typedef struct Queue{
 Queue *queue_construct(){
     Queue *queue = (Queue *)malloc(sizeof(Queue));
 
-    queue->list = list_construct();
+    queue->forward_list = forward_list_construct();
     queue->size = 0;
 
     return queue;
@@ -29,7 +29,7 @@ Queue *queue_construct(){
  * @param value 
  */
 void queue_enqueue(Queue *queue, data_type value){
-    list_push_front(queue->list, value);
+    forward_list_push_back(queue->forward_list, value);
     queue->size++;
 }
 
@@ -42,7 +42,7 @@ void queue_enqueue(Queue *queue, data_type value){
 data_type queue_dequeue(Queue *queue){
     data_type val;
 
-    val = list_pop_back(queue->list);
+    val = forward_list_pop_front(queue->forward_list);
     queue->size--;
 
     return val;
@@ -70,7 +70,7 @@ int queue_empty(Queue *queue){
  * @param queue 
  */
 void queue_destroy(Queue *queue){
-    list_destroy(queue->list);
+    forward_list_destroy(queue->forward_list);
 
     free(queue);
 }
