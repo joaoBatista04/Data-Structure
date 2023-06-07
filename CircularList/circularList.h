@@ -2,13 +2,13 @@
 #define CIRCULAR_H
 
 typedef int data_type;
-typedef struct CircularFL CircularFL;
+typedef struct CircularList CircularList;
 
-CircularFL* circular_fl_create();
-void circular_fl_push_front(CircularFL *circular, data_type value);
-data_type circular_fl_pop_back(CircularFL *circular);
-void circular_fl_print(CircularFL *circular, void (*print_fn)(data_type));
-int circular_fl_isEmpty(CircularFL *circular);
-void circular_fl_destroy(CircularFL *circular);
+CircularList* circular_list_create();
+void circular_list_push_front(CircularList *circular, data_type value);
+data_type circular_list_pop_back(CircularList *circular);
+void circular_list_print(CircularList *circular, void (*print_fn)(data_type));
+int circular_list_isEmpty(CircularList *circular);
+void circular_list_destroy(CircularList *circular);
 
 #endif

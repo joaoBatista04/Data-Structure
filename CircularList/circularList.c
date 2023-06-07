@@ -24,14 +24,14 @@ void node_destroy(Node *node){
     free(node);
 }
 
-struct CircularFL{
+struct CircularList{
     Node *head;
     Node *last;
     int size;
 };
 
-CircularFL *circular_fl_create(){
-    CircularFL *list = (CircularFL *)malloc(sizeof(CircularFL));
+CircularList *circular_list_create(){
+    CircularList *list = (CircularList *)malloc(sizeof(CircularList));
 
     list->head = NULL;
     list->last = NULL;
@@ -40,7 +40,7 @@ CircularFL *circular_fl_create(){
     return list;
 }
 
-void circular_fl_push_front(CircularFL *circular, data_type value){
+void circular_list_push_front(CircularList *circular, data_type value){
     if(circular->size == MAX_LIST){
         exit(1);
     }
@@ -66,7 +66,7 @@ void circular_fl_push_front(CircularFL *circular, data_type value){
     circular->size++;
 }
 
-data_type circular_fl_pop_back(CircularFL *circular){
+data_type circular_list_pop_back(CircularList *circular){
     data_type value;
 
     if(!circular->size){
@@ -102,7 +102,7 @@ data_type circular_fl_pop_back(CircularFL *circular){
     return value;
 }
 
-void circular_fl_print(CircularFL *circular, void (*print_fn)(data_type)){
+void circular_list_print(CircularList *circular, void (*print_fn)(data_type)){
     Node *aux = circular->head;
 
     if(circular->head == circular->last && circular->head != NULL){
@@ -123,7 +123,7 @@ void circular_fl_print(CircularFL *circular, void (*print_fn)(data_type)){
     }
 }
 
-int circular_fl_isEmpty(CircularFL *circular){
+int circular_list_isEmpty(CircularList *circular){
     if(!circular->size){
         return 1;
     }
@@ -132,11 +132,11 @@ int circular_fl_isEmpty(CircularFL *circular){
         return 0;
     }
 }
-void circular_fl_destroy(CircularFL *circular){
+void circular_list_destroy(CircularList *circular){
     data_type garbage = 0;
 
     for(int i = 0; i < circular->size; i++){
-        garbage = circular_fl_pop_back(circular);
+        garbage = circular_list_pop_back(circular);
     }
 
     free(circular);

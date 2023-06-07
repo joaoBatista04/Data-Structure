@@ -7,7 +7,7 @@ void print_fn(data_type value){
 }
 
 int main(){
-    CircularFL *l = circular_fl_create();
+    CircularList *l = circular_list_create();
 
     int qtd;
     scanf("%d\n", &qtd);
@@ -18,18 +18,18 @@ int main(){
         scanf("%*c%s", op);
 
         if(!strcmp(op, "pop")){
-            printf("%d\n", circular_fl_pop_back(l));
+            printf("%d\n", circular_list_pop_back(l));
         }
 
         else{
             scanf("%d", &value);
-            circular_fl_push_front(l, value);
+            circular_list_push_front(l, value);
         }
 
-        //circle_fl_print(l, print_fn);
+        //circle_list_print(l, print_fn);
     }
 
-    circular_fl_destroy(l);
+    circular_list_destroy(l);
 
     return 0;
 }
