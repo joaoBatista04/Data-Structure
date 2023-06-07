@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "circularList.h"
 
-#define MAX_LIST 5
+#define MAX_LIST 6
 
 typedef struct Node{
     data_type value;
