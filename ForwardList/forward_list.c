@@ -10,7 +10,9 @@ struct ForwardList{
 };
 
 /**
- * @brief This function creates a linked list and allocates memory to it
+ * @brief This function creates a linked list and allocates memory to it.
+ * 
+ * @brief Time Complexity: O(1)
  * 
  * @return ForwardList* 
  */
@@ -27,6 +29,8 @@ ForwardList* forward_list_construct(){
 /**
  * @brief This function returns the linked list size
  * 
+ * @brief Time Complexity: O(1)
+ * 
  * @param l 
  * @return int 
  */
@@ -36,6 +40,8 @@ int forward_list_size(ForwardList* l){
 
 /**
  * @brief This function adds an item to the beginning of the linked list
+ * 
+ * @brief Time Complexity: O(1)
  * 
  * @param l 
  * @param val 
@@ -52,6 +58,8 @@ void forward_list_push_front(ForwardList* l, data_type val){
 
 /**
  * @brief This function prints the linked list values on the screen. This function needs a function pointer that tells how to print the data_type
+ * 
+ * @brief Time Complexity: O(n)
  * 
  * @param l 
  * @param print_fn 
@@ -73,6 +81,8 @@ void forward_list_print(ForwardList* l, void (*print_fn)(data_type)){
 
 /**
  * @brief This function returns the i-th element of the linked list
+ * 
+ * @brief Time Complexity: O(n)
  * 
  * @param l 
  * @param i 
@@ -97,6 +107,8 @@ data_type forward_list_get(ForwardList* l, int i){
 
 /**
  * @brief This function removes the first element from the linked list
+ * 
+ * @brief Time Complexity: O(1)
  * 
  * @param l 
  * @return data_type 
@@ -126,6 +138,8 @@ data_type forward_list_pop_front(ForwardList* l){
 /**
  * @brief This function returns a linked list containing the reverse of another
  * 
+ * @brief Time Complexity: O(n)
+ * 
  * @param l 
  * @return ForwardList* 
  */
@@ -145,6 +159,8 @@ ForwardList* forward_list_reverse(ForwardList* l){
 
 /**
  * @brief This function returns the same reversed linked list, without creating a new one
+ * 
+ * @brief Time Complexity: O(n)
  * 
  * @param l 
  * @return ForwardList* 
@@ -169,6 +185,8 @@ ForwardList* forward_list_reverse_inplace(ForwardList* l){
 /**
  * @brief This function frees the memory allocated to the list and its nodes
  * 
+ * @brief Time Complexity: O(n)
+ * 
  * @param l 
  */
 void forward_list_destroy(ForwardList *l){
@@ -187,6 +205,8 @@ void forward_list_destroy(ForwardList *l){
 /**
  * @brief This function concatenates two linked list, adding the second one values at the beginning of the first one
  * 
+ * @brief Time Complexity: O(n)
+ * 
  * @param list 
  * @param listTwo 
  */
@@ -201,6 +221,8 @@ void forward_list_cat(ForwardList *list, ForwardList *listTwo){
 
 /**
  * @brief This function adds an item to the end of the list
+ * 
+ * @brief Time Complexity: O(1)
  * 
  * @param l 
  * @param value 

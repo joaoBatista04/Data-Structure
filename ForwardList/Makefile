@@ -14,9 +14,3 @@ clean:
 
 run: 
 	./main
-
-git:
-	@ git add .
-	@ git commit -m $(commit)
-
-	
