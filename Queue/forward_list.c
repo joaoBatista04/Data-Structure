@@ -123,6 +123,7 @@ data_type forward_list_pop_front(ForwardList* l){
 
     return value;
 }
+
 /**
  * @brief This function returns a linked list containing the reverse of another
  * 
