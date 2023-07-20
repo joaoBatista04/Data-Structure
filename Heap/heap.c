@@ -153,6 +153,7 @@ void* heap_push(Heap *heap, void *data, double priority){
     }
 
     _heapify_up(heap, heap->size);
+    
     heap->size++;
 
     return NULL;
